@@ -90,7 +90,6 @@ function filterTodo(e) {
     });
 }                                                                                                                                               
 
-
 function saveLocalTodos(todo) {
     // Check
     let todos;
@@ -138,4 +137,19 @@ function getTodos(todo) {
         // Append To UL List
         todoList.appendChild(todoDiv);
     })
+}
+
+function removeLocalTodos(todo){
+        // Check
+        let todos;
+        if (localStorage.getItem('todos') === null){
+            todos = [];
+        }
+        else {
+            todos = JSON.parse(localStorage.getItem('todos'));
+        }
+        
+        const todoIndex = todo.children[0].innerText;
+        todos.splice(todos.indexOf(todoIndex), 1);
+        localStorage.setItem("todos", JSON.stringify(todos));
 }
